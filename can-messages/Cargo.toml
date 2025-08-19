@@ -1,0 +1,9 @@
+[package]
+name = "can-messages"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+can-messages-trait = { version = "0.1.0", path = "can-messages-trait" }
+num_enum = { version = "0.7.4", default-features = false }
+zerocopy = { version = "0.8.26", features = ["derive"] }

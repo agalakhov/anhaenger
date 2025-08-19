@@ -1,0 +1,32 @@
+[workspace]
+resolver = "3"
+members = ["can-messages", "hdc1080-async", "makita-ps", "test-board", "temp-controller"]
+
+[profile.dev]
+debug = true
+lto = true
+opt-level = "z"
+incremental = false
+
+[profile.release]
+debug = false
+debug-assertions = false
+overflow-checks = false
+lto = true
+opt-level = "z"
+incremental = false
+codegen-units = 1
+
+[patch.crates-io]
+hdc1080-async = { path = "hdc1080-async" }
+#portable_atomic_enum = { path = "forks/portable_atomic_enum" }
+#embassy-stm32 = { path = "forks/embassy/embassy-stm32" }
+#embassy-time = { path = "forks/embassy/embassy-time" }
+#embassy-time-driver = { path = "forks/embassy/embassy-time-driver" }
+#embassy-executor = { path = "forks/embassy/embassy-executor" }
+#embassy-futures = { path = "forks/embassy/embassy-futures" }
+#embassy-sync = { path = "forks/embassy/embassy-sync" }
+#embedded-hal = { path = "forks/embedded-hal/embedded-hal" }
+#embedded-hal-async = { path = "forks/embedded-hal/embedded-hal-async" }
+#embedded-hal-bus = { path = "forks/embedded-hal/embedded-hal-bus" }
+#ssd1306 = { path = "forks/ssd1306" }
