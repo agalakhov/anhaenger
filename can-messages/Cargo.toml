@@ -3,6 +3,9 @@ name = "can-messages"
 version = "0.1.0"
 edition = "2024"
 
+[features]
+stm32f042f6 = [ "can-messages-trait/stm32f042f6" ]
+
 [dependencies]
 can-messages-trait = { version = "0.1.0", path = "can-messages-trait" }
 num_enum = { version = "0.7.4", default-features = false }

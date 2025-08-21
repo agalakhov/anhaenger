@@ -10,15 +10,15 @@ struct Can {
     id: Expr,
 }
 
-#[proc_macro_derive(CanID, attributes(can))]
+#[proc_macro_derive(CanMessage, attributes(can))]
 pub fn derive(input: TokenStream) -> TokenStream {
     let input = parse_macro_input!(input);
-    let Can { ident, id } = Can::from_derive_input(&input).expect("Missing or incorrect #[can] attribute");
 
+    let Can { ident, id } = Can::from_derive_input(&input).expect("Missing or incorrect #[can] attribute");
 
     let output = quote! {
         #[automatically_derived]
-        impl ::can_messages_trait::CanID for #ident {
+        impl ::can_messages_trait::CanMessage for #ident {
             const ID: u16 = (#id) as u16;
         }
     };
@@ -32,7 +32,7 @@ pub fn can_message(attr: TokenStream, item: TokenStream) -> TokenStream {
 
     let output = quote! {
         #[repr(C)]
-        #[derive(Debug, TryFromBytes, IntoBytes, Immutable, KnownLayout, Clone, CanID)]
+        #[derive(Debug, TryFromBytes, IntoBytes, Immutable, KnownLayout, Clone, CanMessage)]
         #[can(id = #id)]
         #item
     };

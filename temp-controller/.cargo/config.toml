@@ -4,11 +4,11 @@
 runner = 'probe-rs run --chip STM32F042F6Px'
 #linker = 'flip-link'
 
+[env]
+DEFMT_LOG = "info"
+
 [build]
 target = "thumbv6m-none-eabi"
-
-[env]
-DEFMT_LOG = "trace"
 
 [unstable]
 build-std = ["core"]

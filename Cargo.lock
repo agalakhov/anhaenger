@@ -116,6 +116,7 @@ name = "can-messages-trait"
 version = "0.1.0"
 dependencies = [
  "can-messages-derive",
+ "embassy-stm32",
  "zerocopy",
 ]
 
@@ -731,7 +732,6 @@ dependencies = [
  "static_assertions",
  "static_cell",
  "unwrap-infallible",
- "zerocopy",
 ]
 
 [[package]]
@@ -1068,6 +1068,7 @@ name = "temp-controller"
 version = "0.1.0"
 dependencies = [
  "array-macro",
+ "can-messages",
  "cortex-m",
  "cortex-m-rt",
  "defmt 1.0.1",
@@ -1119,7 +1120,6 @@ dependencies = [
  "static_assertions",
  "static_cell",
  "unwrap-infallible",
- "zerocopy",
 ]
 
 [[package]]

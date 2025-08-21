@@ -8,7 +8,7 @@ linker = 'flip-link'
 target = "thumbv6m-none-eabi"
 
 [env]
-DEFMT_LOG = "trace"
+DEFMT_LOG = "info"
 
 [unstable]
 build-std = ["core"]

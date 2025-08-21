@@ -18,6 +18,7 @@ use embassy_embedded_hal::shared_bus::asynch::i2c::I2cDevice;
 use embassy_executor::{main, task, Spawner};
 use embassy_futures::select::select;
 use embassy_stm32::{
+    pac,
     adc::{self as stm32_adc, Adc, AdcChannel},
     bind_interrupts,
     can::{self as stm32_can, Can},
@@ -65,6 +66,9 @@ async fn main(spawner: Spawner) {
         config.rcc.apb1_pre = APBPrescaler::DIV1;
     }
     let dev = embassy_stm32::init(config);
+
+    // Reconfigure pins for CAN bus
+    pac::SYSCFG.cfgr1().modify(|w| w.set_pa11_pa12_rmp(true));
 
     let sda = dev.PF0;
     let scl = dev.PB8;

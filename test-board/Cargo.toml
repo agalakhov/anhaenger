@@ -6,7 +6,7 @@ name = "test-board"
 version = "0.1.0"
 
 [dependencies]
-can-messages = { version = "0.1.0", path = "../can-messages" }
+can-messages = { version = "0.1.0", path = "../can-messages", features = ["stm32f042f6"] }
 cortex-m = { version = "0.7.7", features = ["inline-asm", "critical-section-single-core"] }
 cortex-m-rt = "0.7.3"
 defmt = "1.0.1"
@@ -29,7 +29,6 @@ ssd1306 = { version = "0.10.0", features = ["async"] }
 static_assertions = "1.1.0"
 static_cell = "2.1.0"
 unwrap-infallible = "0.1.5"
-zerocopy = "0.8.26"
 
 [[bin]]
 name = "test-board"

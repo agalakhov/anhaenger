@@ -10,7 +10,7 @@ use embassy_stm32::{
     mode::Async,
 };
 use embassy_sync::{blocking_mutex::raw::NoopRawMutex, mutex::Mutex};
-use embassy_time::{Duration, Timer};
+use embassy_time::Timer;
 use heapless::String;
 
 use crate::{
@@ -26,9 +26,17 @@ pub async fn process(i2c: &'static Mutex<NoopRawMutex, I2c<'static, Async, Maste
     let mut display = Ssd1306Async::new(iface, DisplaySize128x32, DisplayRotation::Rotate180)
         .into_terminal_mode();
 
-    if display.init().await.is_err() {
-        error!("Display initialization error");
-        return;
+    let mut init_count = 10;
+    loop {
+        if display.init().await.is_ok() {
+            break;
+        }
+        init_count -= 1;
+        if init_count == 0 {
+            error!("Display initialization error");
+            return;
+        }
+        Timer::after_millis(10).await;
     }
 
     let _ = display.clear().await;
@@ -44,6 +52,6 @@ pub async fn process(i2c: &'static Mutex<NoopRawMutex, I2c<'static, Async, Maste
         let _ = write!(s, "Bat: {batt_voltage:>5} mV\nOut: {output_voltage:>5} mV\nCur: {output_current:>5} mA\nP: {power:>7} mW");
         let _ = display.write_str(&s).await;
 
-        Timer::after(Duration::from_millis(300)).await;
+        Timer::after_millis(300).await;
     }
 }
