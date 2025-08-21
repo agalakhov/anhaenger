@@ -1,0 +1,5 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "LM25148")(type "KiCad")(uri "${KIPRJMOD}/LM25148.kicad_sym")(options "")(descr ""))
+  (lib (name "makita-battery")(type "KiCad")(uri "${KIPRJMOD}/makita-battery.kicad_sym")(options "")(descr ""))
+)

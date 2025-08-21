@@ -1,0 +1,4 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "makita-battery")(type "KiCad")(uri "${KIPRJMOD}/makita-battery.pretty")(options "")(descr ""))
+)
